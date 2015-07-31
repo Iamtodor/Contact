@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Contacts</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="deleteButton">Delete</string>
+    <string name="findButton">Find</string>
+    <string name="addButton">Add</string>
+    <string name="nameEdit">Name:</string>
+    <string name="phoneEdit">Phone:</string>
+    <string name="findEdit">Name:</string>
+    <string name="showButton">Show</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="hintFind">Input name</string>
+    <string-array name="dialogItems">
+        <item>@string/update</item>
+        <item>@string/delete</item>
+    </string-array>
+</resources>
