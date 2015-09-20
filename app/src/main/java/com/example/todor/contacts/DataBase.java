@@ -19,7 +19,7 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Contacts";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String  KEY_ID = "id";
+    private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_PHONE = "phone";
 
@@ -68,8 +68,8 @@ public class DataBase extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do{
                 Contact contact = new Contact();
-                contact.setName(cursor.getString(1));
-                contact.setPhone(cursor.getString(2));
+                contact.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+                contact.setPhone(cursor.getString(cursor.getColumnIndex(KEY_PHONE)));
                 list.add(contact);
             } while (cursor.moveToNext());
         }
@@ -80,8 +80,8 @@ public class DataBase extends SQLiteOpenHelper {
     public void addContact(String name, String phone) {
         sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        contentValues.put("phone", phone);
+        contentValues.put(KEY_NAME, name);
+        contentValues.put(KEY_PHONE, phone);
         sqLiteDatabase.insert(DATABASE_NAME, null, contentValues);
         sqLiteDatabase.close();
     }
@@ -96,8 +96,8 @@ public class DataBase extends SQLiteOpenHelper {
             id = cursor.getInt(0);
         String where = KEY_ID + "=" + id;
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", newName);
-        contentValues.put("phone", newPhone);
+        contentValues.put(KEY_NAME, newName);
+        contentValues.put(KEY_PHONE, newPhone);
         sqLiteDatabase.update(DATABASE_NAME, contentValues, where, null);
     }
 

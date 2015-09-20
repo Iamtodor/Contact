@@ -22,20 +22,27 @@ public class ListAdapter extends ArrayAdapter<Contact> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
         View v = convertView;
         if(v == null) {
-            LayoutInflater layoutInflater;
-            layoutInflater = LayoutInflater.from(getContext());
-            v = layoutInflater.inflate(R.layout.contact, null);
+            v = LayoutInflater.from(getContext()).inflate(R.layout.contact, parent, false);
+            viewHolder = new ViewHolder();
+            viewHolder.nameTextView = (TextView) v.findViewById(R.id.nameView);
+            viewHolder.phoneTextView = (TextView) v.findViewById(R.id.phoneView);
+            v.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) v.getTag();
         }
 
         Contact contact = getItem(position);
 
-        TextView name = (TextView) v.findViewById(R.id.nameView);
-        TextView phone = (TextView) v.findViewById(R.id.phoneView);
-
-        name.setText(contact.getName());
-        phone.setText(contact.getPhone());
+        viewHolder.nameTextView.setText(contact.getName());
+        viewHolder.phoneTextView.setText(contact.getPhone());
         return v;
+    }
+
+    static class ViewHolder{
+        TextView nameTextView;
+        TextView phoneTextView;
     }
 }
